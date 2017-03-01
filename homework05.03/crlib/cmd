@@ -1,0 +1,5 @@
+g++ -fPIC -c func.cpp
+g++ -shared -o libres.so func.o
+g++ main.o -L. -lres -o result
+LD_LIBRARY_PATH=/homework05.03/crlib
+export LD_LIBRARY_PATH
