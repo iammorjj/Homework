@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1488395085 source:/home/glitch/programming/homework05.03/IDE/main.cpp
+	<bits/stdc++.h>
+	"sort.h"
+	"inout.h"
+
+1488395218 /home/glitch/programming/homework05.03/IDE/sort.h
+	<bits/stdc++.h>
+
+1488395159 /home/glitch/programming/homework05.03/IDE/inout.h
+	<bits/stdc++.h>
+
