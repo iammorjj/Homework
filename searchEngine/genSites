@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+#include "./tinyxml/tinyxml.h"
+#include "./tinyxml/tinystr.h"
+
+using namespace std;
+
+const int sz = 1000;
+const int pg = 20;
+
+int main()
+{
+    string siteName;
+    for(int i = 1; i <= sz; ++i) {
+
+        siteName = "site" + to_string(i) + ".com";
+        int rP = rand() % sz + 1;
+        int qL = rand() % pg + 1;
+
+        TiXmlDocument doc;
+        TiXmlElement* el;
+        TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "", "" );
+        doc.LinkEndChild( decl );
+
+        TiXmlElement* root = new TiXmlElement( "Site" );
+        doc.LinkEndChild( root );
+
+        el = new TiXmlElement( "Name" );
+        el->LinkEndChild( new TiXmlText( siteName.c_str() ));
+        root->LinkEndChild( el );
+
+        el = new TiXmlElement( "Rate" );
+        el->LinkEndChild( new TiXmlText( to_string(rP).c_str() ));
+        root->LinkEndChild( el );
+
+        TiXmlElement* links = new TiXmlElement( "Links" );
+        root->LinkEndChild( links );
+
+        vector<bool> u(sz+1, 0);
+        for(int j = 0; j < qL; ++j) {
+            string siteLoc;
+            int r = rand() % sz + 1;
+
+            if(!u[r]) {
+                siteLoc = "site" + to_string(r) + ".com";
+                u[r] = 1;
+            }
+
+            el = new TiXmlElement( "Name" );
+            el->LinkEndChild( new TiXmlText( siteLoc.c_str() ));
+            links->LinkEndChild( el );
+        }
+
+        string path = "./SitesBase/" + siteName + ".xml";
+        doc.SaveFile( path.c_str() );
+    }
+
+    return 0;
+}
